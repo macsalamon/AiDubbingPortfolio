@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maciej Salamon - Voice Actor & AI Dubbing Specialist</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"/>
     <style>
         * {
             margin: 0;
@@ -195,6 +196,9 @@
             transition: all 0.3s;
             font-size: 1rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .audio-btn:hover {
@@ -206,6 +210,10 @@
         .audio-btn.active {
             background: var(--accent-color);
             color: var(--primary-color);
+        }
+
+        .audio-btn .fi {
+            font-size: 1.2em;
         }
 
         /* Contact Section */
@@ -421,12 +429,24 @@
 
             <!-- Language Selector -->
             <div class="audio-selector">
-                <button class="audio-btn active" onclick="switchLanguage('english')">🇬🇧 English</button>
-                <button class="audio-btn" onclick="switchLanguage('german')">🇩🇪 German</button>
-                <button class="audio-btn" onclick="switchLanguage('polish')">🇵🇱 Polish</button>
-                <button class="audio-btn" onclick="switchLanguage('french')">🇫🇷 French</button>
-                <button class="audio-btn" onclick="switchLanguage('russian')">🇷🇺 Russian</button>
-                <button class="audio-btn" onclick="switchLanguage('chinese')">🇨🇳 Chinese</button>
+                <button class="audio-btn active" onclick="switchLanguage('english')">
+                    <span class="fi fi-gb"></span> English
+                </button>
+                <button class="audio-btn" onclick="switchLanguage('german')">
+                    <span class="fi fi-de"></span> German
+                </button>
+                <button class="audio-btn" onclick="switchLanguage('polish')">
+                    <span class="fi fi-pl"></span> Polish
+                </button>
+                <button class="audio-btn" onclick="switchLanguage('french')">
+                    <span class="fi fi-fr"></span> French
+                </button>
+                <button class="audio-btn" onclick="switchLanguage('russian')">
+                    <span class="fi fi-ru"></span> Russian
+                </button>
+                <button class="audio-btn" onclick="switchLanguage('chinese')">
+                    <span class="fi fi-cn"></span> Chinese
+                </button>
             </div>
         </div>
     </section>
