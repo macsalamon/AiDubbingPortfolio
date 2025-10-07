@@ -70,6 +70,34 @@
             color: var(--accent-color);
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         /* Hero Section */
         .hero {
             max-width: 1200px;
@@ -199,6 +227,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            min-height: 44px;
         }
 
         .audio-btn:hover {
@@ -270,6 +299,7 @@
             justify-content: center;
             gap: 2rem;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -281,8 +311,48 @@
             color: var(--accent-color);
         }
 
-        /* Responsive */
+        /* Responsive - Mobile */
         @media (max-width: 768px) {
+            /* Hamburger Menu */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background: rgba(26, 26, 46, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 3rem;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+                padding: 1rem;
+                display: block;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 3rem 1rem 2rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -294,35 +364,103 @@
             .hero-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 2rem;
             }
 
             .hero-text {
                 text-align: center;
             }
 
-            .hero-image img {
-                width: 200px;
-                height: 200px;
+            .hero .intro {
+                font-size: 1rem;
             }
 
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+            /* Sections - Less padding on mobile */
+            section {
+                padding: 2rem 0.5rem;
             }
 
+            .section-title {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            /* Video Containers - Full width on mobile */
+            .video-container {
+                border-radius: 10px;
+                padding: 1rem;
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+
+            .video-title {
+                font-size: 1.4rem;
+            }
+
+            .video-description {
+                font-size: 0.95rem;
+            }
+
+            /* Audio Selector - Better mobile layout */
             .audio-selector {
                 gap: 0.5rem;
+                margin-top: 1rem;
             }
 
             .audio-btn {
-                padding: 0.5rem 1rem;
+                padding: 0.6rem 1rem;
                 font-size: 0.9rem;
+                flex: 1 1 calc(50% - 0.25rem);
+                justify-content: center;
+                min-width: 140px;
+            }
+
+            /* Contact Grid */
+            .contact-grid {
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            /* Footer */
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .audio-btn {
+                flex: 1 1 100%;
+                min-width: auto;
             }
         }
 
         /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Prevent scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -331,11 +469,16 @@
     <header>
         <nav>
             <div class="logo">Maciej Salamon</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#heygen-demo">HeyGen Demo</a></li>
-                <li><a href="#elevenlabs-demo">Multi-Language Demo</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#heygen-demo" class="nav-link">HeyGen Demo</a></li>
+                <li><a href="#elevenlabs-demo" class="nav-link">Multi-Language Demo</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -498,11 +641,31 @@
     </footer>
 
     <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const body = document.body;
+        const menuLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking a link
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+
         // Multi-audio player functionality
         let currentAudio = null;
         const mainVideo = document.getElementById('main-video');
 
-        // Mute the main video's audio track (we'll use separate audio elements)
         mainVideo.muted = false;
         mainVideo.volume = 1.0;
 
@@ -514,17 +677,14 @@
                 return;
             }
 
-            // Store current playback position
             const currentTime = currentAudio ? currentAudio.currentTime : mainVideo.currentTime;
             const wasPlaying = currentAudio ? !currentAudio.paused : !mainVideo.paused;
 
-            // Stop current audio if exists
             if (currentAudio && currentAudio !== newAudio) {
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
             }
 
-            // For English, use the main video audio
             if (language === 'english') {
                 if (currentAudio) {
                     currentAudio.pause();
@@ -536,7 +696,6 @@
                     mainVideo.play();
                 }
             } else {
-                // Mute main video and use separate audio
                 mainVideo.muted = true;
                 currentAudio = newAudio;
                 currentAudio.currentTime = currentTime;
@@ -547,20 +706,18 @@
                 }
             }
 
-            // Sync audio with video
             syncAudioWithVideo();
 
-            // Update active button
             document.querySelectorAll('.audio-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.target.classList.remove('active');
+            event.target.closest('.audio-btn').classList.add('active');
         }
 
         function syncAudioWithVideo() {
             if (!currentAudio) return;
 
-            // Sync playback
             mainVideo.onplay = () => {
                 if (currentAudio) currentAudio.play();
             };
@@ -573,7 +730,6 @@
                 if (currentAudio) currentAudio.currentTime = mainVideo.currentTime;
             };
 
-            // Continuous sync (handles drift)
             const syncInterval = setInterval(() => {
                 if (currentAudio && !mainVideo.paused) {
                     const drift = Math.abs(currentAudio.currentTime - mainVideo.currentTime);
@@ -584,7 +740,6 @@
             }, 1000);
         }
 
-        // Initialize with English (main video audio)
         mainVideo.muted = false;
     </script>
 </body>
