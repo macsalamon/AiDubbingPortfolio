@@ -194,7 +194,7 @@
         }
 
         .video-description {
-            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
             opacity: 0.85;
         }
 
@@ -206,12 +206,21 @@
         }
 
         /* Audio Selector */
-        .audio-selector {
-            margin-top: 1.5rem;
+        .video-audio-wrapper {
             display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .audio-selector {
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            min-width: 180px;
+        }
+
+        .video-wrapper {
+            flex: 1;
         }
 
         .audio-btn {
@@ -228,12 +237,14 @@
             align-items: center;
             gap: 0.5rem;
             min-height: 44px;
+            justify-content: flex-start;
+            width: 100%;
         }
 
         .audio-btn:hover {
             background: var(--accent-color);
             color: var(--primary-color);
-            transform: translateY(-2px);
+            transform: translateX(5px);
         }
 
         .audio-btn.active {
@@ -425,10 +436,17 @@
                 font-size: 0.95rem;
             }
 
-            /* Audio Selector - Better mobile layout */
+            /* Audio Selector - Back to horizontal on mobile */
+            .video-audio-wrapper {
+                flex-direction: column;
+            }
+
             .audio-selector {
-                gap: 0.5rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
                 margin-top: 1rem;
+                min-width: auto;
             }
 
             .audio-btn {
@@ -437,6 +455,10 @@
                 flex: 1 1 calc(50% - 0.25rem);
                 justify-content: center;
                 min-width: 140px;
+            }
+
+            .audio-btn:hover {
+                transform: translateY(-2px);
             }
 
             /* Contact Grid */
@@ -522,6 +544,14 @@
                     what makes a performance sound human across languages and cultures.
                 </p>
             </div>
+
+            <!-- Hidden Audio Elements -->
+            <audio id="audio-english" src="media/MacDubDemoFreshAudio.mp4" style="display:none;"></audio>
+            <audio id="audio-german" src="media/ShortDemoGerman.mp4" style="display:none;"></audio>
+            <audio id="audio-polish" src="media/ShortDemoPolish.mp4" style="display:none;"></audio>
+            <audio id="audio-french" src="media/ShortDemoFrench.mp4" style="display:none;"></audio>
+            <audio id="audio-russian" src="media/ShortDemoRussian.mp4" style="display:none;"></audio>
+            <audio id="audio-chinese" src="media/ShortDemoChinese.mp4" style="display:none;"></audio>
         </div>
     </section>
 
@@ -539,15 +569,15 @@
         
         <div class="video-container">
             <h3 class="video-title">🎬 HeyGen Multi-Language Demo</h3>
+            <video id="heygen-video" controls>
+                <source src="media/HeyGenDemoMultilang.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <p class="video-description">
                 Automatic lip-sync dubbing across five languages, demonstrating how AI can localize video content while maintaining 
                 visual coherence. Each segment was selected for translation accuracy and performance quality—because the technology 
                 is only as good as the human directing it.
             </p>
-            <video id="heygen-video" controls>
-                <source src="media/HeyGenDemoMultilang.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
         </div>
     </section>
 
@@ -566,50 +596,45 @@
         
         <div class="video-container">
             <h3 class="video-title">🎙️ Multi-Language Audio Selection</h3>
+            
+            <div class="video-audio-wrapper">
+                <!-- Language Selector -->
+                <div class="audio-selector">
+                    <button class="audio-btn active" onclick="switchLanguage('english')">
+                        <span class="fi fi-gb"></span> English
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('german')">
+                        <span class="fi fi-de"></span> German
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('polish')">
+                        <span class="fi fi-pl"></span> Polish
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('french')">
+                        <span class="fi fi-fr"></span> French
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('russian')">
+                        <span class="fi fi-ru"></span> Russian
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('chinese')">
+                        <span class="fi fi-cn"></span> Chinese
+                    </button>
+                </div>
+
+                <!-- Main Video -->
+                <div class="video-wrapper">
+                    <video id="main-video" controls>
+                        <source src="media/MacDubDemoFreshAudio.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
             <p class="video-description">
                 Click any language to switch audio tracks during playback. Each version was generated using ElevenLabs voice cloning, 
                 then quality-controlled for pacing, pronunciation, and emotional authenticity.
                 <br><br>
                 This is what's possible when you combine AI efficiency with a performer's understanding of what makes speech sound human.
-                <br><br>
-                <strong>Languages:</strong> English (original recording) | German | Polish | French | Russian | Chinese (Mandarin)
             </p>
-            
-            <!-- Main Video (silent or English base) -->
-            <video id="main-video" controls>
-                <source src="media/MacDubDemoFreshAudio.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <!-- Hidden Audio Elements -->
-            <audio id="audio-english" src="media/MacDubDemoFreshAudio.mp4" style="display:none;"></audio>
-            <audio id="audio-german" src="media/ShortDemoGerman.mp4" style="display:none;"></audio>
-            <audio id="audio-polish" src="media/ShortDemoPolish.mp4" style="display:none;"></audio>
-            <audio id="audio-french" src="media/ShortDemoFrench.mp4" style="display:none;"></audio>
-            <audio id="audio-russian" src="media/ShortDemoRussian.mp4" style="display:none;"></audio>
-            <audio id="audio-chinese" src="media/ShortDemoChinese.mp4" style="display:none;"></audio>
-
-            <!-- Language Selector -->
-            <div class="audio-selector">
-                <button class="audio-btn active" onclick="switchLanguage('english')">
-                    <span class="fi fi-gb"></span> English
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('german')">
-                    <span class="fi fi-de"></span> German
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('polish')">
-                    <span class="fi fi-pl"></span> Polish
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('french')">
-                    <span class="fi fi-fr"></span> French
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('russian')">
-                    <span class="fi fi-ru"></span> Russian
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('chinese')">
-                    <span class="fi fi-cn"></span> Chinese
-                </button>
-            </div>
         </div>
     </section>
 
