@@ -13,12 +13,13 @@
         }
 
         :root {
-            --primary-color: #1a1a2e;
+            /* Darker colors (20% darker than original) */
+            --primary-color: #0d0d17;
             --accent-color: #d4af37;
             --text-light: #e0e0e0;
             --text-dark: #333;
-            --bg-dark: #16213e;
-            --bg-section: #0f3460;
+            --bg-dark: #0b1020;
+            --bg-section: #081b30;
         }
 
         body {
@@ -30,7 +31,7 @@
 
         /* Header */
         header {
-            background: rgba(26, 26, 46, 0.95);
+            background: rgba(13, 13, 23, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: sticky;
@@ -178,13 +179,30 @@
             opacity: 0.9;
         }
 
-        /* Video Players */
+        /* Video Players - Metallic boxes */
         .video-container {
-            background: var(--bg-section);
+            background: linear-gradient(145deg, #0a2038 0%, #081b30 50%, #061525 100%);
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                inset 0 -1px 0 rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            position: relative;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            border-radius: 15px 15px 0 0;
+            pointer-events: none;
         }
 
         .video-title {
@@ -265,29 +283,50 @@
         }
 
         .contact-card {
-            background: var(--bg-section);
+            background: linear-gradient(145deg, #0a2038 0%, #081b30 50%, #061525 100%);
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s, background 0.3s;
             cursor: pointer;
             position: relative;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                inset 0 -1px 0 rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            border-radius: 10px 10px 0 0;
+            pointer-events: none;
         }
 
         .contact-card:hover {
             transform: translateY(-5px);
-            background: rgba(15, 52, 96, 0.8);
+            background: linear-gradient(145deg, #0c2540 0%, #0a1f38 50%, #071828 100%);
         }
 
         .contact-card h3 {
             color: var(--accent-color);
             margin-bottom: 1rem;
             cursor: pointer;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-card a {
             color: var(--text-light);
             text-decoration: none;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-card a:hover {
@@ -300,6 +339,8 @@
             font-size: 0.95rem;
             margin-top: 0.5rem;
             cursor: pointer;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-card-link {
@@ -354,7 +395,7 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 60px);
-                background: rgba(26, 26, 46, 0.98);
+                background: rgba(13, 13, 23, 0.98);
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
@@ -544,14 +585,6 @@
                     what makes a performance sound human across languages and cultures.
                 </p>
             </div>
-
-            <!-- Hidden Audio Elements -->
-            <audio id="audio-english" src="media/MacDubDemoFreshAudio.mp4" style="display:none;"></audio>
-            <audio id="audio-german" src="media/ShortDemoGerman.mp4" style="display:none;"></audio>
-            <audio id="audio-polish" src="media/ShortDemoPolish.mp4" style="display:none;"></audio>
-            <audio id="audio-french" src="media/ShortDemoFrench.mp4" style="display:none;"></audio>
-            <audio id="audio-russian" src="media/ShortDemoRussian.mp4" style="display:none;"></audio>
-            <audio id="audio-chinese" src="media/ShortDemoChinese.mp4" style="display:none;"></audio>
         </div>
     </section>
 
@@ -635,6 +668,14 @@
                 <br><br>
                 This is what's possible when you combine AI efficiency with a performer's understanding of what makes speech sound human.
             </p>
+
+            <!-- Hidden Audio Elements -->
+            <audio id="audio-english" src="media/MacDubDemoFreshAudio.mp4" style="display:none;"></audio>
+            <audio id="audio-german" src="media/ShortDemoGerman.mp4" style="display:none;"></audio>
+            <audio id="audio-polish" src="media/ShortDemoPolish.mp4" style="display:none;"></audio>
+            <audio id="audio-french" src="media/ShortDemoFrench.mp4" style="display:none;"></audio>
+            <audio id="audio-russian" src="media/ShortDemoRussian.mp4" style="display:none;"></audio>
+            <audio id="audio-chinese" src="media/ShortDemoChinese.mp4" style="display:none;"></audio>
         </div>
     </section>
 
