@@ -6,8 +6,82 @@
     <title>Maciej Salamon - Voice Actor & AI Dubbing Specialist</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"/>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fix for client video buttons - use same styling as main audio buttons */
+        .audio-btn-client {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--accent-color);
+            color: var(--text-light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        .audio-btn-client:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .audio-btn-client.active {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .audio-btn-client .fi {
+            font-size: 1.2em;
+        }
+
+        /* Constrain vertical video size */
+        .vertical-video-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .vertical-video-wrapper video {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .audio-btn-client {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                flex: 1 1 calc(50% - 0.25rem);
+                justify-content: center;
+                min-width: 140px;
+            }
+
+            .audio-btn-client:hover {
+                transform: translateY(-2px);
+            }
+
+            .vertical-video-wrapper video {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .audio-btn-client {
+                flex: 1 1 100%;
+                min-width: auto;
+            }
+        }
+    </style>
 </head>
-<script src="beams.js"></script>
 <body>
     <!-- Header Navigation -->
     <header>
@@ -20,6 +94,7 @@
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#client-demo" class="nav-link">Client Project</a></li>
                 <li><a href="#elevenlabs-demo" class="nav-link">Voice Cloning Demo</a></li>
                 <li><a href="#heygen-demo" class="nav-link">Lip-Sync Demo</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -37,7 +112,7 @@
                 <h1>Maciej Salamon</h1>
                 <p class="subtitle">Voice Actor & AI Dubbing Specialist</p>
                 <p class="intro">
-                    For twenty years, I've been a professional voice actor—bringing scripts to life on stage, in studios, 
+                    For over twenty years, I've been a professional voice actor and audio producer—bringing scripts to life on stage, in studios, 
                     and for clients like Google, Apple, Microsoft, and History Channel.
                     <br><br>
                     Now, I'm bridging two worlds: combining my performer's ear for authenticity with cutting-edge AI dubbing 
@@ -47,6 +122,66 @@
                     what makes a performance sound human across languages and cultures.
                 </p>
             </div>
+        </div>
+    </section>
+
+    <!-- Real-World Client Project -->
+    <section id="client-demo">
+        <h2 class="section-title">Real-World Application: Business Localization</h2>
+        <p class="section-description">
+            AI dubbing isn't just for entertainment—it's a practical tool for businesses expanding into new markets.
+        </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('client-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="client-collapse">
+            <p>
+                This promotional video for a swimming instruction business was originally produced in Polish. 
+                The challenge: localize it for German and English-speaking markets while maintaining the 
+                approachable tone essential for such a service.
+                <br><br>
+                Using AI assisted translation and AI dubbing, I produced German and English versions in under 2 hours—a process that would have 
+                required hiring voice talent, booking studio time, and managing multiple recording sessions using 
+                traditional methods.
+                <br><br>
+                <strong>My role:</strong> Script adaptation (ensuring natural phrasing in target languages while keeping the timing), 
+                voice direction (selecting appropriate tone and pacing), and quality control (fine-tuning the delivery).
+            </p>
+        </div>
+        
+        <div class="video-container">
+            <h3 class="video-title">🏊 Swimming Instruction Promo - Multi-Language</h3>
+            
+            <div class="video-audio-wrapper">
+                <!-- Language Selector -->
+                <div class="audio-selector">
+                    <button class="audio-btn-client active" onclick="switchClientLanguage('polish')">
+                        <span class="fi fi-pl"></span> Polish (Original)
+                    </button>
+                    <button class="audio-btn-client" onclick="switchClientLanguage('german')">
+                        <span class="fi fi-de"></span> German
+                    </button>
+                    <button class="audio-btn-client" onclick="switchClientLanguage('english')">
+                        <span class="fi fi-gb"></span> English
+                    </button>
+                </div>
+
+                <!-- Vertical Video Display -->
+                <div class="vertical-video-wrapper">
+                    <video id="client-video" controls>
+                        <source id="client-video-source" src="media/SwimmingPOL.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <p class="video-description">
+                <strong>Business impact:</strong> This swimming instruction business can now reach German and 
+                English-speaking families in their area without the cost and complexity of traditional dubbing. 
+                The localized videos maintain the easy tone of the original while adapting naturally 
+                to each language's rhythm and cultural context.
+                <br><br>
+                <em>This is what modern content localization looks like: fast, cost-effective, and quality-controlled 
+                by someone who understands both the technology and the nuances of human speech.</em>
+            </p>
         </div>
     </section>
 
@@ -199,6 +334,7 @@
         <p>&copy; 2025 Maciej Salamon. Alle Rechte vorbehalten.</p>
     </footer>
 
+    <script src="beams.js"></script>
     <script>
         // Collapsible toggle function
         function toggleCollapsible(id) {
@@ -234,6 +370,35 @@
                 body.classList.remove('menu-open');
             });
         });
+
+        // Client demo video switcher
+        function switchClientLanguage(language) {
+            const clientVideo = document.getElementById('client-video');
+            const clientVideoSource = document.getElementById('client-video-source');
+            
+            const videoFiles = {
+                'polish': 'media/SwimmingPOL.mp4',
+                'german': 'media/SwimmingGER.mp4',
+                'english': 'media/SwimmingENG.mp4'
+            };
+            
+            const currentTime = clientVideo.currentTime;
+            const wasPlaying = !clientVideo.paused;
+            
+            clientVideoSource.src = videoFiles[language];
+            clientVideo.load();
+            clientVideo.currentTime = currentTime;
+            
+            if (wasPlaying) {
+                clientVideo.play();
+            }
+            
+            // Update active button
+            document.querySelectorAll('.audio-btn-client').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.closest('.audio-btn-client').classList.add('active');
+        }
 
         // Multi-audio player functionality
         let currentAudio = null;
