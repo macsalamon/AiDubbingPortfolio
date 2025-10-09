@@ -174,9 +174,41 @@
         .section-description {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 1rem;
             font-size: 1.1rem;
             opacity: 0.9;
+        }
+
+        /* Collapsible description */
+        .collapsible-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 auto 2rem;
+            display: block;
+            text-decoration: underline;
+            transition: opacity 0.3s;
+        }
+
+        .collapsible-toggle:hover {
+            opacity: 0.7;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .collapsible-content.expanded {
+            max-height: 500px;
         }
 
         /* Video Players - Metallic boxes */
@@ -461,6 +493,11 @@
                 padding: 0 1rem;
             }
 
+            .collapsible-content {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
             /* Video Containers - Full width on mobile */
             .video-container {
                 border-radius: 10px;
@@ -558,8 +595,8 @@
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#heygen-demo" class="nav-link">HeyGen Demo</a></li>
-                <li><a href="#elevenlabs-demo" class="nav-link">Multi-Language Demo</a></li>
+                <li><a href="#elevenlabs-demo" class="nav-link">Voice Cloning Demo</a></li>
+                <li><a href="#heygen-demo" class="nav-link">Lip-Sync Demo</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
@@ -588,44 +625,22 @@
         </div>
     </section>
 
-    <!-- HeyGen Showcase -->
-    <section id="heygen-demo">
-        <h2 class="section-title">AI Lip-Sync Dubbing Showcase</h2>
-        <p class="section-description">
-            AI lip-sync technology can match mouth movements to new languages—but only when guided by someone who understands 
-            linguistic rhythm and cultural nuance.
-            <br><br>
-            This demo features seamless transitions across five languages (English → German → Polish → French → Russian), 
-            each segment carefully selected and quality-controlled to ensure authentic delivery. Watch for the flag transitions 
-            in the corner.
-        </p>
-        
-        <div class="video-container">
-            <h3 class="video-title">🎬 HeyGen Multi-Language Demo</h3>
-            <video id="heygen-video" controls>
-                <source src="media/HeyGenDemoMultilang.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p class="video-description">
-                Automatic lip-sync dubbing across five languages, demonstrating how AI can localize video content while maintaining 
-                visual coherence. Each segment was selected for translation accuracy and performance quality—because the technology 
-                is only as good as the human directing it.
-            </p>
-        </div>
-    </section>
-
     <!-- ElevenLabs Multi-Audio Demo -->
     <section id="elevenlabs-demo">
-        <h2 class="section-title">Voice Cloning & Dubbing Demo</h2>
+        <h2 class="section-title">Voice Cloning & Dubbing Demo (ElevenLabs)</h2>
         <p class="section-description">
             Voice cloning technology can replicate a voice across languages—but without a trained ear for performance, it sounds robotic.
-            <br><br>
-            I bring native fluency in German and Polish, professional-level English, and foundational knowledge of French and Russian. 
-            More importantly, I bring two decades of experience knowing what makes a voice performance feel authentic rather than generated.
-            <br><br>
-            Select any language below to hear the same script across six languages. Same voice. Same intent. Different linguistic 
-            context—managed from recording to final QA.
         </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('elevenlabs-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="elevenlabs-collapse">
+            <p>
+                I bring native fluency in German and Polish, professional-level English, and foundational knowledge of French and Russian. 
+                More importantly, I bring two decades of experience knowing what makes a voice performance feel authentic rather than generated.
+                <br><br>
+                Select any language below to hear the same script across six languages. Same voice. Same intent. Different linguistic 
+                context—managed from recording to final QA.
+            </p>
+        </div>
         
         <div class="video-container">
             <h3 class="video-title">🎙️ Multi-Language Audio Selection</h3>
@@ -679,22 +694,56 @@
         </div>
     </section>
 
+    <!-- HeyGen Showcase -->
+    <section id="heygen-demo">
+        <h2 class="section-title">AI Lip-Sync Dubbing Showcase (HeyGen)</h2>
+        <p class="section-description">
+            AI lip-sync technology can match mouth movements to new languages—but only when guided by someone who understands 
+            linguistic rhythm and cultural nuance.
+        </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('heygen-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="heygen-collapse">
+            <p>
+                This demo features seamless transitions across five languages (English → German → Polish → French → Russian), 
+                each segment carefully selected and quality-controlled to ensure authentic delivery. Watch for the flag transitions 
+                in the corner.
+            </p>
+        </div>
+        
+        <div class="video-container">
+            <h3 class="video-title">🎬 HeyGen Multi-Language Demo</h3>
+            <video id="heygen-video" controls>
+                <source src="media/HeyGenDemoMultilang.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="video-description">
+                Automatic lip-sync dubbing across five languages, demonstrating how AI can localize video content while maintaining 
+                visual coherence. Each segment was selected for translation accuracy and performance quality—because the technology 
+                is only as good as the human directing it.
+            </p>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <h2 class="section-title">Get in Touch</h2>
         <p class="section-description">
             <strong>Looking for AI dubbing services or multilingual voice production?</strong>
-            <br><br>
-            I work with production companies, agencies, and direct clients who need:
-            <br>
-            → High-quality AI dubbing with human-level quality control
-            <br>
-            → Multilingual content localization (native DE/PL, fluent EN, functional FR/RU)
-            <br>
-            → Someone who understands both the creative and technical sides of voice production
-            <br><br>
-            Whether you need one language or ten, I manage the full pipeline—from script preparation to final delivery.
         </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('contact-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="contact-collapse">
+            <p>
+                I work with production companies, agencies, and direct clients who need:
+                <br>
+                → High-quality AI dubbing with human-level quality control
+                <br>
+                → Multilingual content localization (native DE/PL, fluent EN, functional FR/RU)
+                <br>
+                → Someone who understands both the creative and technical sides of voice production
+                <br><br>
+                Whether you need one language or ten, I manage the full pipeline—from script preparation to final delivery.
+            </p>
+        </div>
         
         <div class="contact-grid">
             <div class="contact-card" onclick="window.location.href='mailto:info@macsalamon.com'">
@@ -726,6 +775,20 @@
     </footer>
 
     <script>
+        // Collapsible toggle function
+        function toggleCollapsible(id) {
+            const content = document.getElementById(id);
+            const button = event.target;
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                button.textContent = 'Read more ▼';
+            } else {
+                content.classList.add('expanded');
+                button.textContent = 'Read less ▲';
+            }
+        }
+
         // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
