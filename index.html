@@ -5,465 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maciej Salamon - Voice Actor & AI Dubbing Specialist</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"/>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #1a1a2e;
-            --accent-color: #d4af37;
-            --text-light: #e0e0e0;
-            --text-dark: #333;
-            --bg-dark: #16213e;
-            --bg-section: #0f3460;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem 4rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-image {
-            flex: 0 0 250px;
-        }
-
-        .hero-image img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--accent-color);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-            text-align: left;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-color), #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero .intro {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-            opacity: 0.85;
-        }
-
-        /* Section Styling */
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-description {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Video Players */
-        .video-container {
-            background: var(--bg-section);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .video-title {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .video-description {
-            margin-bottom: 1.5rem;
-            opacity: 0.85;
-        }
-
-        video {
-            width: 100%;
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* Audio Selector */
-        .audio-selector {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .audio-btn {
-            background: rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--accent-color);
-            color: var(--text-light);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            min-height: 44px;
-        }
-
-        .audio-btn:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .audio-btn.active {
-            background: var(--accent-color);
-            color: var(--primary-color);
-        }
-
-        .audio-btn .fi {
-            font-size: 1.2em;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-card {
-            background: var(--bg-section);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-card h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .contact-card a {
-            color: var(--text-light);
-            text-decoration: none;
-        }
-
-        .contact-card a:hover {
-            color: var(--accent-color);
-        }
-
-        .contact-card p {
-            color: var(--text-light);
-            opacity: 0.8;
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-color);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Responsive - Mobile */
-        @media (max-width: 768px) {
-            /* Hamburger Menu */
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 60px);
-                background: rgba(26, 26, 46, 0.98);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 3rem;
-                gap: 2rem;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links a {
-                font-size: 1.5rem;
-                padding: 1rem;
-                display: block;
-            }
-
-            /* Hero Section */
-            .hero {
-                padding: 3rem 1rem 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-text {
-                text-align: center;
-            }
-
-            .hero .intro {
-                font-size: 1rem;
-            }
-
-            /* Sections - Less padding on mobile */
-            section {
-                padding: 2rem 0.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-                padding: 0 1rem;
-            }
-
-            .section-description {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-
-            /* Video Containers - Full width on mobile */
-            .video-container {
-                border-radius: 10px;
-                padding: 1rem;
-                margin-left: 0.5rem;
-                margin-right: 0.5rem;
-            }
-
-            .video-title {
-                font-size: 1.4rem;
-            }
-
-            .video-description {
-                font-size: 0.95rem;
-            }
-
-            /* Audio Selector - Better mobile layout */
-            .audio-selector {
-                gap: 0.5rem;
-                margin-top: 1rem;
-            }
-
-            .audio-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-                flex: 1 1 calc(50% - 0.25rem);
-                justify-content: center;
-                min-width: 140px;
-            }
-
-            /* Contact Grid */
-            .contact-grid {
-                gap: 1.5rem;
-                padding: 0 1rem;
-            }
-
-            /* Footer */
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            footer {
-                padding: 1.5rem 1rem;
-            }
-        }
-
-        /* Small phones */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .audio-btn {
-                flex: 1 1 100%;
-                min-width: auto;
-            }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Prevent scroll when menu is open */
-        body.menu-open {
-            overflow: hidden;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<script src="beams.js"></script>
 <body>
     <!-- Header Navigation -->
     <header>
@@ -476,8 +20,8 @@
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#heygen-demo" class="nav-link">HeyGen Demo</a></li>
-                <li><a href="#elevenlabs-demo" class="nav-link">Multi-Language Demo</a></li>
+                <li><a href="#elevenlabs-demo" class="nav-link">Voice Cloning Demo</a></li>
+                <li><a href="#heygen-demo" class="nav-link">Lip-Sync Demo</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
@@ -506,61 +50,64 @@
         </div>
     </section>
 
-    <!-- HeyGen Showcase -->
-    <section id="heygen-demo">
-        <h2 class="section-title">AI Lip-Sync Dubbing Showcase</h2>
-        <p class="section-description">
-            AI lip-sync technology can match mouth movements to new languages—but only when guided by someone who understands 
-            linguistic rhythm and cultural nuance.
-            <br><br>
-            This demo features seamless transitions across five languages (English → German → Polish → French → Russian), 
-            each segment carefully selected and quality-controlled to ensure authentic delivery. Watch for the flag transitions 
-            in the corner.
-        </p>
-        
-        <div class="video-container">
-            <h3 class="video-title">🎬 HeyGen Multi-Language Demo</h3>
-            <p class="video-description">
-                Automatic lip-sync dubbing across five languages, demonstrating how AI can localize video content while maintaining 
-                visual coherence. Each segment was selected for translation accuracy and performance quality—because the technology 
-                is only as good as the human directing it.
-            </p>
-            <video id="heygen-video" controls>
-                <source src="media/HeyGenDemoMultilang.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </section>
-
     <!-- ElevenLabs Multi-Audio Demo -->
     <section id="elevenlabs-demo">
         <h2 class="section-title">Voice Cloning & Dubbing Demo</h2>
         <p class="section-description">
             Voice cloning technology can replicate a voice across languages—but without a trained ear for performance, it sounds robotic.
-            <br><br>
-            I bring native fluency in German and Polish, professional-level English, and foundational knowledge of French and Russian. 
-            More importantly, I bring two decades of experience knowing what makes a voice performance feel authentic rather than generated.
-            <br><br>
-            Select any language below to hear the same script across six languages. Same voice. Same intent. Different linguistic 
-            context—managed from recording to final QA.
         </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('elevenlabs-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="elevenlabs-collapse">
+            <p>
+                I bring native fluency in German and Polish, professional-level English, and foundational knowledge of French and Russian. 
+                More importantly, I bring two decades of experience knowing what makes a voice performance feel authentic rather than generated.
+                <br><br>
+                Select any language below to hear the same script across six languages. Same voice. Same intent. Different linguistic 
+                context—managed from recording to final QA.
+            </p>
+        </div>
         
         <div class="video-container">
             <h3 class="video-title">🎙️ Multi-Language Audio Selection</h3>
+            
+            <div class="video-audio-wrapper">
+                <!-- Language Selector -->
+                <div class="audio-selector">
+                    <button class="audio-btn active" onclick="switchLanguage('english')">
+                        <span class="fi fi-gb"></span> English
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('german')">
+                        <span class="fi fi-de"></span> German
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('polish')">
+                        <span class="fi fi-pl"></span> Polish
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('french')">
+                        <span class="fi fi-fr"></span> French
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('russian')">
+                        <span class="fi fi-ru"></span> Russian
+                    </button>
+                    <button class="audio-btn" onclick="switchLanguage('chinese')">
+                        <span class="fi fi-cn"></span> Chinese
+                    </button>
+                </div>
+
+                <!-- Main Video -->
+                <div class="video-wrapper">
+                    <video id="main-video" controls>
+                        <source src="media/MacDubDemoFreshAudio.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
             <p class="video-description">
                 Click any language to switch audio tracks during playback. Each version was generated using ElevenLabs voice cloning, 
                 then quality-controlled for pacing, pronunciation, and emotional authenticity.
                 <br><br>
                 This is what's possible when you combine AI efficiency with a performer's understanding of what makes speech sound human.
-                <br><br>
-                <strong>Languages:</strong> English (original recording) | German | Polish | French | Russian | Chinese (Mandarin)
             </p>
-            
-            <!-- Main Video (silent or English base) -->
-            <video id="main-video" controls>
-                <source src="media/MacDubDemoFreshAudio.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
 
             <!-- Hidden Audio Elements -->
             <audio id="audio-english" src="media/MacDubDemoFreshAudio.mp4" style="display:none;"></audio>
@@ -569,28 +116,36 @@
             <audio id="audio-french" src="media/ShortDemoFrench.mp4" style="display:none;"></audio>
             <audio id="audio-russian" src="media/ShortDemoRussian.mp4" style="display:none;"></audio>
             <audio id="audio-chinese" src="media/ShortDemoChinese.mp4" style="display:none;"></audio>
+        </div>
+    </section>
 
-            <!-- Language Selector -->
-            <div class="audio-selector">
-                <button class="audio-btn active" onclick="switchLanguage('english')">
-                    <span class="fi fi-gb"></span> English
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('german')">
-                    <span class="fi fi-de"></span> German
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('polish')">
-                    <span class="fi fi-pl"></span> Polish
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('french')">
-                    <span class="fi fi-fr"></span> French
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('russian')">
-                    <span class="fi fi-ru"></span> Russian
-                </button>
-                <button class="audio-btn" onclick="switchLanguage('chinese')">
-                    <span class="fi fi-cn"></span> Chinese
-                </button>
-            </div>
+    <!-- HeyGen Showcase -->
+    <section id="heygen-demo">
+        <h2 class="section-title">AI Lip-Sync Dubbing Showcase</h2>
+        <p class="section-description">
+            AI lip-sync technology can match mouth movements to new languages—but only when guided by someone who understands 
+            linguistic rhythm and cultural nuance.
+        </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('heygen-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="heygen-collapse">
+            <p>
+                This demo features seamless transitions across five languages (English → German → Polish → French → Russian), 
+                each segment carefully selected and quality-controlled to ensure authentic delivery. Watch for the flag transitions 
+                in the corner.
+            </p>
+        </div>
+        
+        <div class="video-container">
+            <h3 class="video-title">🎬 HeyGen Multi-Language Demo</h3>
+            <video id="heygen-video" controls>
+                <source src="media/HeyGenDemoMultilang.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="video-description">
+                Automatic lip-sync dubbing across five languages, demonstrating how AI can localize video content while maintaining 
+                visual coherence. Each segment was selected for translation accuracy and performance quality—because the technology 
+                is only as good as the human directing it.
+            </p>
         </div>
     </section>
 
@@ -599,33 +154,37 @@
         <h2 class="section-title">Get in Touch</h2>
         <p class="section-description">
             <strong>Looking for AI dubbing services or multilingual voice production?</strong>
-            <br><br>
-            I work with production companies, agencies, and direct clients who need:
-            <br>
-            → High-quality AI dubbing with human-level quality control
-            <br>
-            → Multilingual content localization (native DE/PL, fluent EN, functional FR/RU)
-            <br>
-            → Someone who understands both the creative and technical sides of voice production
-            <br><br>
-            Whether you need one language or ten, I manage the full pipeline—from script preparation to final delivery.
         </p>
+        <button class="collapsible-toggle" onclick="toggleCollapsible('contact-collapse')">Read more ▼</button>
+        <div class="collapsible-content" id="contact-collapse">
+            <p>
+                I work with production companies, agencies, and direct clients who need:
+                <br>
+                → High-quality AI dubbing with human-level quality control
+                <br>
+                → Multilingual content localization (native DE/PL, fluent EN, functional FR/RU)
+                <br>
+                → Someone who understands both the creative and technical sides of voice production
+                <br><br>
+                Whether you need one language or ten, I manage the full pipeline—from script preparation to final delivery.
+            </p>
+        </div>
         
         <div class="contact-grid">
-            <div class="contact-card">
+            <div class="contact-card" onclick="window.location.href='mailto:info@macsalamon.com'">
                 <h3>📧 Email</h3>
-                <a href="mailto:contact@maciejsalamon.com">contact@maciejsalamon.com</a>
+                <a href="mailto:info@macsalamon.com" class="main-link">info@macsalamon.com</a>
                 <p>For project inquiries and collaboration opportunities</p>
             </div>
-            <div class="contact-card">
+            <div class="contact-card" onclick="window.open('https://www.linkedin.com/in/macsalamon/', '_blank')">
                 <h3>💼 LinkedIn</h3>
-                <a href="https://linkedin.com/in/macsalamon" target="_blank">View Profile</a>
+                <a href="https://www.linkedin.com/in/macsalamon/" target="_blank" class="main-link">View Profile</a>
                 <p>Connect for updates on AI dubbing projects and industry insights</p>
             </div>
-            <div class="contact-card">
-                <h3>🎤 More Demos</h3>
-                <a href="#elevenlabs-demo">Listen to Demos</a>
-                <p>Explore traditional voice-over work and audio production samples</p>
+            <div class="contact-card" onclick="window.open('https://salamon-voiceover.com', '_blank')">
+                <h3>🎤 Voice Portfolio</h3>
+                <a href="https://salamon-voiceover.com" target="_blank" class="main-link">Visit Portfolio</a>
+                <p>Explore our full range of voice-over work and audio production</p>
             </div>
         </div>
     </section>
@@ -641,6 +200,20 @@
     </footer>
 
     <script>
+        // Collapsible toggle function
+        function toggleCollapsible(id) {
+            const content = document.getElementById(id);
+            const button = event.target;
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                button.textContent = 'Read more ▼';
+            } else {
+                content.classList.add('expanded');
+                button.textContent = 'Read less ▲';
+            }
+        }
+
         // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
